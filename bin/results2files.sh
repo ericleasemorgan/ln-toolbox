@@ -9,15 +9,15 @@
 
 
 # configure
-JSON='./results.json'
-CORPUS='./corpus'
+BATCHES='./batches'
+RECORDS='./records'
 
 # initialize and make sane
-mkdir -p $CORPUS
+mkdir -p $RECORDS
 INDEX=0
 
 # process each item in the result
-cat $JSON | jq .value[].Document.Content | while read ENTRY; do
+cat $JSON | jq .ResultId | while read ENTRY; do
 
 	# remove leading and trailing quote marks; cool!
 	ENTRY="${ENTRY:1}"

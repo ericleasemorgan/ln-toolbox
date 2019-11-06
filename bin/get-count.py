@@ -1,19 +1,14 @@
 #!/usr/bin/env python
 
-# lexis-nexis.py - given (quite) a few configurations, query Lexis Nexis and download search results
+# get-count.py - given (quite) a few configurations, return the number of search results
 
 # Eric Lease Morgan <emorgan@nd.edu>
 # (c) University of Notre Dame; distributed under a GNU Public License
 
-# October 16, 2019 - first documentation; based on work provided by Jeff Clark <jeff.clark.1@lexisnexis.com>
-# October 21, 2019 - implemented command-line input
+# November 6, 2019 - first custd
 
 
-# advanced configuration
-CONTENT  = 'News'
-FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and PublicationType eq 'TmV3c3BhcGVycw' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
-SLEEP    = 12 
-TOP      = 50
+CONTENT = 'News'
 
 # require
 from datetime import datetime 
@@ -52,8 +47,8 @@ def build_header( token ) :
 def build_url( content='News', query='', skip=0, expand='Document', top=50, filter=None ) :
 	"""Builds the URL part of the request to Web Services API."""
 	# check for filter
-	if filter != None : api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=' + str(skip) + '&$top=' + str(TOP) + '&$filter=' + filter )
-	else : api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=' + str(skip) + '&$top=' + str(TOP))
+	if filter != None : api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=' + str(skip) + '&$top=1&$filter=' + filter )
+	else : api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=0' + '&$top=1')
 	return api_url
 
 def get_result_count(json_data) :
@@ -67,27 +62,13 @@ def time_now() :
 
 # initialize
 headers = build_header( get_token( CLIENTID, SECRET ) )
-skip    = 0  
 
-# search, forever
-while True :
+# Filter is set to filter=None here. Change to filter=filter to use the filter specified above
+url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='Document', top=1, filter=None )  
+response = requests.get( url, headers=headers )
 
-	# Filter is set to filter=None here. Change to filter=filter to use the filter specified above
-	url      = build_url( content=CONTENT, query=QUERY, skip=skip, expand='Document', top=TOP, filter=None )  
-	response = requests.get( url, headers=headers )
+# Creates a file with the current time as the file name.
+#with open( str( time_now() ) + '.json', 'w' ) as handle : handle.write( response.text )
+print( str( get_result_count( response.json() ) ) )
 
-	# Creates a file with the current time as the file name.
-	#with open( str( time_now() ) + '.json', 'w' ) as handle : handle.write( response.text )
-	print( response.text )
 
-	# increment
-	skip = ( skip + TOP )
-
-	# Check to see if all the results have been looped through
-	#if skip > get_result_count( response.json() ) : break
-	
-	# just exit; we are only debugging
-	break
-
-	# throttle myself
-	sleep( SLEEP )
