@@ -17,12 +17,12 @@ fi
 # get input
 JSON=$1
 
-# parse out the record
+# parse out rudimentary bibliographics
 TITLE=$( cat $JSON | jq .Title )
 DATE=$( cat $JSON | jq .Date )
 IDENTIFIER=$( cat $JSON | jq .ResultId )
 	
-# normalize the bibliographics
+# normalize/format the bibliographics
 TITLE="${TITLE:1}"
 TITLE="${TITLE%?}"
 DATE="${DATE:1}"
