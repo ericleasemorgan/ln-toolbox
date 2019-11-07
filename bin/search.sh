@@ -4,7 +4,7 @@
 # pre-configure
 CLIENTID=''
 SECRET=''
-QUERY='"Eric Lease Morgan" OR "Roy Tennant"'
+QUERY='"Eric Lease Morgan"'
 
 # configure
 GETCOUNT='./bin/get-count.py'
@@ -12,11 +12,11 @@ SEARCH='./bin/search.py'
 START=0
 COUNT=50
 BATCH=0
-BATCHES='./tmp'
+TMP='./tmp'
 
 # initialize
-rm -rf $BATCHES
-mkdir -p $BATCHES
+rm -rf $TMP
+mkdir -p $TMP
 TOTAL=$( $GETCOUNT $CLIENTID $SECRET "$QUERY" )
 
 # repeat forever
@@ -27,7 +27,7 @@ while [ 1 ]; do
 	
 	# re-configure
 	let BATCH=BATCH+1
-	OUTPUT=$BATCHES/batch-$( printf "%04d" $BATCH ).json
+	OUTPUT=$TMP/batch-$( printf "%04d" $BATCH ).json
 		
 	# search
 	echo "Getting $COUNT records of $TOTAL starting at record $START ($OUTPUT)" >&2

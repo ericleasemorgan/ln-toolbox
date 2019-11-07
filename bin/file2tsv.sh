@@ -20,6 +20,7 @@ JSON=$1
 # parse out the record
 TITLE=$( cat $JSON | jq .Title )
 DATE=$( cat $JSON | jq .Date )
+IDENTIFIER=$( cat $JSON | jq .ResultId )
 	
 # normalize the bibliographics
 TITLE="${TITLE:1}"
@@ -27,7 +28,11 @@ TITLE="${TITLE%?}"
 DATE="${DATE:1}"
 DATE="${DATE%?}"
 DATE=$( echo $DATE | cut -d "T" -f1 )
+IDENTIFIER="${IDENTIFIER:1}"
+IDENTIFIER="${IDENTIFIER%?}"
+IDENTIFIER="$IDENTIFIER:"
+IDENTIFIER=$( echo $IDENTIFIER | cut -d ":" -f3 )
 
 # output and done
-printf "$TITLE\t$DATE\n"
+printf "$IDENTIFIER\t$TITLE\t$DATE\n"
 exit
