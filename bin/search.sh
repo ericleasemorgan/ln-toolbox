@@ -1,21 +1,22 @@
 #!/usr/bin/env bash
 
 
+# pre-configure
+CLIENTID='34PWFMDK6DT3GCQ8D77JK7W22WTGK5'
+SECRET='WXN8H2QPVTKFTJ62Q3RQBJ4H83JGJQJ26SSGHJ6C'
+QUERY='"Eric Lease Morgan" OR "Roy Tennant"'
+
 # configure
 GETCOUNT='./bin/get-count.py'
 SEARCH='./bin/search.py'
-
-CLIENTID=''
-SECRET=''
-QUERY='"Eric Lease Morgan" OR "Roy Tennant"'
 START=0
 COUNT=50
 BATCH=0
-DIRECTORY='./batches'
+BATCHES='./tmp'
 
 # initialize
-rm -rf $DIRECTORY
-mkdir -p $DIRECTORY
+rm -rf $BATCHES
+mkdir -p $BATCHES
 TOTAL=$( $GETCOUNT $CLIENTID $SECRET "$QUERY" )
 
 # repeat forever
@@ -26,7 +27,7 @@ while [ 1 ]; do
 	
 	# re-configure
 	let BATCH=BATCH+1
-	OUTPUT=$DIRECTORY/batch-$( printf "%04d" $BATCH ).json
+	OUTPUT=$BATCHES/batch-$( printf "%04d" $BATCH ).json
 		
 	# search
 	echo "Getting $COUNT records of $TOTAL starting at record $START ($OUTPUT)" >&2
@@ -38,5 +39,6 @@ while [ 1 ]; do
 	
 # fini
 done
+
 exit
 

@@ -11,9 +11,7 @@
 CONTENT = 'News'
 
 # require
-from datetime import datetime 
 from requests.auth import HTTPBasicAuth
-from time import sleep
 import json
 import requests
 import sys
@@ -54,11 +52,6 @@ def build_url( content='News', query='', skip=0, expand='Document', top=50, filt
 def get_result_count(json_data) :
     """Gets the number of results from @odata.count in the response"""
     return json_data[ '@odata.count' ]
-
-def time_now() :
-	"""Gets current time to the second."""
-	now = datetime.now()
-	return now.strftime('%Y-%m-%d-%H%M%S')
 
 # initialize
 headers = build_header( get_token( CLIENTID, SECRET ) )
