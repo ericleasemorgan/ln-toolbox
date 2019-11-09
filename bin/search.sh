@@ -2,9 +2,9 @@
 
 
 # pre-configure
-CLIENTID=''
-SECRET=''
-QUERY='"Eric Lease Morgan"'
+CLIENTID='34PWFMDK6DT3GCQ8D77JK7W22WTGK5'
+SECRET='WXN8H2QPVTKFTJ62Q3RQBJ4H83JGJQJ26SSGHJ6C'
+QUERY='("Demuth Museum" OR "Demuth Foundation") AND Lancaster'
 
 # configure
 GETCOUNT='./bin/get-count.py'
