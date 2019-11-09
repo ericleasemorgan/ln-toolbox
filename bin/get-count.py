@@ -1,13 +1,14 @@
 #!/usr/bin/env python
 
-# get-count.py - given (quite) a few configurations, return the number of search results
+# get-count.py - given a client id, client secret, and query, return the number of items match the query
 
 # Eric Lease Morgan <emorgan@nd.edu>
 # (c) University of Notre Dame; distributed under a GNU Public License
 
-# November 6, 2019 - first custd
+# November 6, 2019 - first cut; needs to be cleaned up
 
 
+# configure
 CONTENT = 'News'
 
 # require
@@ -61,7 +62,6 @@ url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='Document', t
 response = requests.get( url, headers=headers )
 
 # Creates a file with the current time as the file name.
-#with open( str( time_now() ) + '.json', 'w' ) as handle : handle.write( response.text )
 print( str( get_result_count( response.json() ) ) )
 
 

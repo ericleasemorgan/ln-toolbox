@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# batch2files.sh - given a batch of Lexis/Nexis records, out each record
+# batch2files.sh - given a batch of Lexis/Nexis records, out each record as a file
 
 # Eric Lease Morgan <emorgan@nd.edu>
 # (c) University of Notre Dame; distributed under a GNU Public License
