@@ -9,15 +9,9 @@
 
 
 # pre-configure
-<<<<<<< HEAD
-CLIENTID='34PWFMDK6DT3GCQ8D77JK7W22WTGK5'
-SECRET='WXN8H2QPVTKFTJ62Q3RQBJ4H83JGJQJ26SSGHJ6C'
-QUERY='("Demuth Museum" OR "Demuth Foundation") AND Lancaster'
-=======
 CLIENTID=''
 SECRET=''
-QUERY='"Eric Lease Morgan" OR "Roy Tennant"'
->>>>>>> 159381422bbe2c185b4a238e2b1644e23d9f7233
+QUERY='"digital humanities"'
 
 # configure
 GETCOUNT='./bin/get-count.py'
