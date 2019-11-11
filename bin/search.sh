@@ -9,9 +9,15 @@
 
 
 # pre-configure
+<<<<<<< HEAD
 CLIENTID='34PWFMDK6DT3GCQ8D77JK7W22WTGK5'
 SECRET='WXN8H2QPVTKFTJ62Q3RQBJ4H83JGJQJ26SSGHJ6C'
 QUERY='"Eric Lease Morgan" OR "Roy Tennant"'
+=======
+CLIENTID=''
+SECRET=''
+QUERY='"digital humanities"'
+>>>>>>> 216dcca7e6bdaab4655e8bffb55d72f41575a7a2
 
 # configure
 GETCOUNT='./bin/get-count.py'
