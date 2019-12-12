@@ -12,7 +12,8 @@
 
 # advanced configuration
 CONTENT  = 'News'
-FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and PublicationType eq 'TmV3c3BhcGVycw' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
+#FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and PublicationType eq 'TmV3c3BhcGVycw' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
+FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English' and Source/Id eq 'MTA1MjUxNA'"
 
 # require
 from datetime import datetime 
@@ -53,7 +54,8 @@ def build_header( token ) :
 def build_url( content='News', query='', skip=0, expand='Document', top=50, filter=None ) :
 	"""Builds the URL part of the request to Web Services API."""
 	# check for filter
-	if filter != None : api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=' + str(skip) + '&$top=' + str(count) + '&$filter=' + filter )
+	if filter != None :
+		api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=' + str(skip) + '&$top=' + str(count) + '&$filter=' + filter )
 	else : api_url = ('https://services-api.lexisnexis.com/v1/' + content + '?$expand=' + expand + '&$search=' + query + '&$skip=' + str(skip) + '&$top=' + str(count))
 	return api_url
 
@@ -61,7 +63,7 @@ def build_url( content='News', query='', skip=0, expand='Document', top=50, filt
 headers = build_header( get_token( CLIENTID, SECRET ) )
 
 # Filter is set to filter=None here. Change to filter=filter to use the filter specified above
-url      = build_url( content=CONTENT, query=QUERY, skip=offset, expand='Document', top=count, filter=None )  
+url      = build_url( content=CONTENT, query=QUERY, skip=offset, expand='Document', top=count, filter=FILTER )  
 response = requests.get( url, headers=headers )
 
 # Creates a file with the current time as the file name.

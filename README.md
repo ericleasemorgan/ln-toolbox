@@ -50,7 +50,7 @@ While all the scripts in the system are enumerated above, they are not expected 
    
    2. Edit the pre-configurations of `./bin/search.sh`, and then run `./bin/search.sh`. Wait patiently, since the search results may be voluminous. The result will be a set of JSON files ("records") in the given directory.
    
-   3. Now that all of your results have been retrieved, you will want to read them. Start by using `./bin/files2tsv.sh` to create a sort of bibliography. Sor the resulting list to get a feel for its contents. Then use  `./bin/db-create.sh`, `./bin/record2sql.sh`, and `./bin/db-insert.sh` to fill a database of your content. Just like the bibliography, use SQL to query the resulting database for items of interest.
+   3. Now that all of your results have been retrieved, you will want to read them. Start by using `./bin/files2tsv.sh` to create a sort of bibliography. Sort the resulting list to get a feel for its contents. Then use  `./bin/db-create.sh`, `./bin/record2sql.sh`, and `./bin/db-insert.sh` to fill a database of your content. Just like the bibliography, use SQL to query the resulting database for items of interest.
    
    4. Finally, articulate an SQL query denoting the items you really want to read. Insert that query into `./bin/db2reader.sh`, run it, and the result will be a set of XML files in the given directory.
    

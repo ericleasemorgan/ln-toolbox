@@ -11,7 +11,7 @@
 # pre-configure
 CLIENTID=''
 SECRET=''
-QUERY='"digital humanities"'
+QUERY='"Anita Hill" AND 1991'
 
 # configure
 GETCOUNT='./bin/get-count.py'
@@ -33,6 +33,7 @@ DIRECTORY=$1
 
 # initialize
 TOTAL=$( $GETCOUNT $CLIENTID $SECRET "$QUERY" )
+echo "Total number of hits: $TOTAL" >&2
 
 # make sane
 rm -rf $TMP
@@ -58,6 +59,7 @@ while [ 1 ]; do
 	# increment and done, conditionally
 	let START=START+COUNT
 	if [[ $START -gt $TOTAL ]]; then break; fi
+	#if [[ $START -gt $LIMIT ]]; then break; fi
 	
 # fini
 done

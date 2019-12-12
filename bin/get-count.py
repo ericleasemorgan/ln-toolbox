@@ -10,6 +10,7 @@
 
 # configure
 CONTENT = 'News'
+FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English' and Source/Id eq 'MTA1MjUxNA'"
 
 # require
 from requests.auth import HTTPBasicAuth
@@ -58,7 +59,7 @@ def get_result_count(json_data) :
 headers = build_header( get_token( CLIENTID, SECRET ) )
 
 # Filter is set to filter=None here. Change to filter=filter to use the filter specified above
-url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='Document', top=1, filter=None )  
+url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='Document', top=1, filter=FILTER )  
 response = requests.get( url, headers=headers )
 
 # Creates a file with the current time as the file name.
