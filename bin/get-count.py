@@ -10,7 +10,8 @@
 
 # configure
 CONTENT = 'News'
-FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English' and Source/Id eq 'MTA1MjUxNA'"
+#FILTER   = "PublicationType eq 'TmV3c3BhcGVycw' and SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
+FILTER   = "(Source/Id eq ('MTA1MzI3Mw') or Source/Id eq ('MTA3NDg3OA') or Source/Id eq ('MTA2Nzg0Mw') or Source/Id eq ('MTA2MTk3Mg') or Source/Id eq ('MTA1MjUxNA') ) and SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
 
 # require
 from requests.auth import HTTPBasicAuth
@@ -59,7 +60,10 @@ def get_result_count(json_data) :
 headers = build_header( get_token( CLIENTID, SECRET ) )
 
 # Filter is set to filter=None here. Change to filter=filter to use the filter specified above
+#url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='Document', top=1, filter=FILTER )  
+#url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='PostFilters', top=1, filter=FILTER )  
 url      = build_url( content=CONTENT, query=QUERY, skip=0, expand='Document', top=1, filter=FILTER )  
+sys.stderr.write( url + "\n" )
 response = requests.get( url, headers=headers )
 
 # Creates a file with the current time as the file name.

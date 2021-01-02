@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-QUERY='.mode tabs\nSELECT identifier, content FROM bibliographics;'
+QUERY='.mode tabs\nSELECT identifier, content FROM bibliographics ORDER BY RANDOM() LIMIT 500;'
 
 if [[ -z $1 || -z $2 ]]; then
 	echo "Usage: $0 <database> <output directory>" >&2

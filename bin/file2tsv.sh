@@ -34,5 +34,5 @@ IDENTIFIER="$IDENTIFIER:"
 IDENTIFIER=$( echo $IDENTIFIER | cut -d ":" -f3 )
 
 # output and done
-printf "$IDENTIFIER\t$TITLE\t$DATE\n"
+echo -e "$IDENTIFIER\t$TITLE\t$DATE"
 exit

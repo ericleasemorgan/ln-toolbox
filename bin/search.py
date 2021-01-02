@@ -12,8 +12,7 @@
 
 # advanced configuration
 CONTENT  = 'News'
-#FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and PublicationType eq 'TmV3c3BhcGVycw' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
-FILTER   = "SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English' and Source/Id eq 'MTA1MjUxNA'"
+FILTER   = "(Source/Id eq ('MTA1MzI3Mw') or Source/Id eq ('MTA3NDg3OA') or Source/Id eq ('MTA2Nzg0Mw') or Source/Id eq ('MTA2MTk3Mg') or Source/Id eq ('MTA1MjUxNA') ) and SearchType eq LexisNexis.ServicesApi.SearchType'Boolean' and GroupDuplicates eq LexisNexis.ServicesApi.GroupDuplicates'ModerateSimilarity' and Language eq LexisNexis.ServicesApi.Language'English'"
 
 # require
 from datetime import datetime 
